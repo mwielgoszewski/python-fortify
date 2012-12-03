@@ -3,4 +3,4 @@
 fortify
 
 '''
-from .fortify import FPR
+from .api import FPR
