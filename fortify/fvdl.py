@@ -45,6 +45,14 @@ class FVDLElement(ObjectifiedDataElement):
 
 class DateTimeElement(ObjectifiedDataElement):
     @property
+    def date(self):
+        return self.datetime.date()
+
+    @property
+    def time(self):
+        return self.datetime.time()
+
+    @property
     def datetime(self):
         try:
             return arrow.get(str(self))
