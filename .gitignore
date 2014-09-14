@@ -56,3 +56,4 @@ target/
 
 # Temporary files
 *.swp
+.DS_Store
