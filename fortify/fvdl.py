@@ -4,8 +4,7 @@ fortify.fvdl
 ~~~~~~~~~~~~
 
 '''
-from lxml.etree import AttributeBasedElementClassLookup, \
-    ElementNamespaceClassLookup
+from lxml.etree import ElementNamespaceClassLookup
 from lxml.objectify import ElementMaker, ObjectifiedDataElement, \
     ObjectifyElementClassLookup
 from lxml import objectify
