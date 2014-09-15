@@ -11,7 +11,7 @@ class FPR(object):
     def __init__(self, project, **kwargs):
         if isinstance(project, basestring):
             self._project = project = openfpr(project)
-        elif isinstance(package, dict):
+        elif isinstance(project, dict):
             self._project = project
         else:
             raise TypeError
