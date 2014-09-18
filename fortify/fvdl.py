@@ -37,12 +37,20 @@ FVDLObjectifiedElementNamespaceClassLookup = ElementNamespaceClassLookup(
     ObjectifyElementClassLookup())
 
 
-class FVDLElement(ObjectifiedDataElement):
-    def get_vulnerablities(self):
+class FortifyObjectifiedDataElement(ObjectifiedDataElement):
+    def __repr__(self):
+        return "<Element {0} at 0x{1:x}>".format(self.tag, id(self))
+
+
+class FVDLElement(FortifyObjectifiedDataElement):
+    def get_vulnerabilities(self):
         return self.Vulnerabilities.Vulnerability
 
 
-class DateTimeElement(ObjectifiedDataElement):
+class DateTimeElement(FortifyObjectifiedDataElement):
+    def __repr__(self):
+        return "<Element {0} at 0x{1:x}>".format(self.tag, id(self))
+
     @property
     def date(self):
         return self.datetime.date()
@@ -59,7 +67,7 @@ class DateTimeElement(ObjectifiedDataElement):
             return arrow.get(dateutil.parser.parse(str(self)))
 
 
-class TimeStampElement(ObjectifiedDataElement):
+class TimeStampElement(FortifyObjectifiedDataElement):
     @property
     def date(self):
         return datetime.date(*map(int, self.get('date').split('-')))
@@ -75,13 +83,13 @@ class TimeStampElement(ObjectifiedDataElement):
             tzinfo=tz.tzlocal()) # use local timezone
 
 
-class UUIDElement(ObjectifiedDataElement):
+class UUIDElement(FortifyObjectifiedDataElement):
     @property
     def uuid(self):
         return uuid.UUID(str(self))
 
 
-class VulnerabilityElement(ObjectifiedDataElement):
+class VulnerabilityElement(FortifyObjectifiedDataElement):
     @property
     def InstanceID(self):
         return self.InstanceInfo.InstanceID
